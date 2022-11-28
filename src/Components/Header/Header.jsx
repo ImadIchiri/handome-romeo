@@ -27,7 +27,7 @@ function Header() {
 
           <button
             onClick={() => setIsNavOpen(!isNavOpen)}
-            onBlur={() => setIsNavOpen(!isNavOpen)}
+            onBlur={() => setIsNavOpen(false)}
             className="absolute top-[116px] right-4 z-40 md:hidden bg-hotBrown"
           >
             {isNavOpen ? (

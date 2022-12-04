@@ -13,6 +13,8 @@ import MessageBanner from "./Components/MessageBanner/MessageBanner";
 import ContactPage from "./Components/ContactPage/ContactPage";
 import AboutPage from "./Components/AboutPage/AboutPage";
 import "./App.css";
+import Login from "./Components/Login";
+import Register from "./Components/Register/Register";
 
 function App() {
   const { messageBanner } = useContext(DataContext);
@@ -21,6 +23,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
         <Route path="cartpage" element={<CartPage />} />
         <Route path="wishlistpage" element={<WishlistPage />} />
         <Route path="productspage" element={<ProductsPage />} />

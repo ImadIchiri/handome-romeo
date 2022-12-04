@@ -58,7 +58,7 @@ const ProductsPage = () => {
 
   return (
     <section className="container min-h-[calc(100vh_-_100px)] bg-mainColor">
-      <div className="hide-scrollbar max-h-[100vh] py-20 relative overflow-x-hidden overflow-y-scroll lg:flex">
+      <div className="flex flex-col hide-scrollbar max-h-[100vh] py-20 relative overflow-x-hidden overflow-y-scroll lg:flex-row">
         <FilterProducts
           minValue={minValue}
           setMinValue={setMinValue}

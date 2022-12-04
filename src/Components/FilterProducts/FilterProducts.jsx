@@ -20,17 +20,17 @@ const FilterProducts = ({
   const categories = [...new Set(products.map((item) => item.category))];
 
   return (
-    <div className="absolute py-12 px-3 top-0 left-0 z-10 translate-x-[-100%] w-[250px] h-fit bg-hotBrown text-white lg:sticky lg:translate-x-[0]">
+    <div className="mb-4 py-12 px-3 space-y-3 top-0 left-0 z-10 h-fit w-[calc(100%_-_30px)] mx-auto bg-hotBrown text-white lg:sticky lg:max-w-[250px] lg:w-[250px] lg:mb-0">
       <div>
         <h2 className="text-3xl mb-4">Category</h2>
-        <ul className="space-y-2">
-          <li className="w-fit text-base font-light hover:underline">
+        <ul className="flex flex-wrap gap-3 items-center lg:flex-col lg:items-start">
+          <li className="w-fit text-base font-light mt-2 hover:underline">
             <Link to={"/productspage"}>All</Link>
           </li>
           {categories.map((category, index) => (
             <li
               key={index}
-              className="w-fit text-base font-light hover:underline"
+              className="w-fit text-base font-light mt-2 hover:underline"
             >
               <Link to={`/productspage?category=${category.toLowerCase()}`}>
                 {`${category[0].toUpperCase()}${category
@@ -92,6 +92,8 @@ const FilterProducts = ({
           ))}
         </div>
       </div>
+
+      {/* <div className="absolute bottom-[-35px] left-0 h-[35px] w-[35px] bg-red-500"></div> */}
     </div>
   );
 };

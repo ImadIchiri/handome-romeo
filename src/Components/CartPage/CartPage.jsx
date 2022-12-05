@@ -3,6 +3,8 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { FaShoppingBasket } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import DataContext from "../../Context/DataContext";
+import { auth } from "../../config/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const CartPage = () => {
   const {
@@ -12,6 +14,7 @@ const CartPage = () => {
     handleMessageBanner,
     priceFormater,
   } = useContext(DataContext);
+  const [user] = useAuthState(auth);
 
   const handleCartRemove = (productId, msgBanner) => {
     handleRemoveFromCart(productId);
@@ -116,10 +119,16 @@ const CartPage = () => {
                 </h3>
               </div>
 
-              <button className="bg-mainColor text-white flex items-center text-xl py-2 px-4">
-                <h3 className="mr-3">Checkout</h3>
-                <FaShoppingBasket className="mb-1" />
-              </button>
+              {user ? (
+                <button className="bg-mainColor text-white flex items-center text-xl py-2 px-4">
+                  <h3 className="mr-3">Checkout</h3>
+                  <FaShoppingBasket className="mb-1" />
+                </button>
+              ) : (
+                <button className="bg-mainColor text-white flex items-center text-xl py-2 px-4">
+                  <h3 className="mr-3">Login to Checkout</h3>
+                </button>
+              )}
             </>
           ) : (
             <div className="w-full text-center py-10">

@@ -15,6 +15,7 @@ import AboutPage from "./Components/AboutPage/AboutPage";
 import "./App.css";
 import Login from "./Components/Login";
 import Register from "./Components/Register/Register";
+import ProtectedRoutes from "./config/ProtectedRoutes";
 
 function App() {
   const { messageBanner } = useContext(DataContext);
@@ -26,7 +27,14 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />
         <Route path="cartpage" element={<CartPage />} />
-        <Route path="wishlistpage" element={<WishlistPage />} />
+        <Route
+          path="wishlistpage"
+          element={
+            <ProtectedRoutes>
+              <WishlistPage />
+            </ProtectedRoutes>
+          }
+        />
         <Route path="productspage" element={<ProductsPage />} />
         <Route path="productpage/:productId" element={<ProductPage />} />
         <Route path="contact" element={<ContactPage />} />

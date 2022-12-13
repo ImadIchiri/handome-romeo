@@ -4,6 +4,28 @@ import productsData from "../Data/productsData.json";
 const DataContext = createContext({});
 
 export const DataProvider = ({ children }) => {
+  /* ============ */
+  useEffect(() => {
+    const handleFetch = async () => {
+      try {
+        const response = await fetch("https://api.jsonserve.com/rDvAe0", {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        });
+        const products = await response.json();
+        console.log(products);
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
+
+    handleFetch();
+  }, []);
+  /* ============ */
+
   const [products, setProducts] = useState(productsData);
   const [cardProducts, setCardProducts] = useState(
     JSON.parse(localStorage.getItem("cardProducts")) || []

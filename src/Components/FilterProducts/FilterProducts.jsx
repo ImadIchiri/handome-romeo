@@ -11,6 +11,8 @@ const FilterProducts = ({
   setMaxValue,
   filterParams,
   setFilterPrams,
+  minPrice,
+  maxPrice,
 }) => {
   const { products } = useContext(DataContext);
   const colorsList = [
@@ -20,7 +22,8 @@ const FilterProducts = ({
   const categories = [...new Set(products.map((item) => item.category))];
 
   return (
-    <div className="mb-4 py-12 px-3 space-y-3 top-0 left-0 z-10 h-fit w-[calc(100%_-_30px)] mx-auto bg-hotBrown text-white lg:sticky lg:max-w-[250px] lg:w-[250px] lg:mb-0">
+    // <div className="mb-4 py-12 px-3 space-y-3 top-0 left-0 z-10 h-fit w-[calc(100%_-_30px)] mx-auto bg-hotBrown text-white lg:sticky lg:max-w-[250px] lg:w-[250px] lg:mb-0">
+    <div className="relative mb-4 py-12 px-3 space-y-3 z-10 h-fit w-[calc(100%_-_30px)] mx-auto bg-hotBrown text-white lg:max-w-[250px] lg:w-[250px] lg:mb-0">
       <div>
         <h2 className="text-3xl mb-4">Category</h2>
         <ul className="flex flex-wrap gap-3 items-center lg:flex-col lg:items-start">
@@ -47,10 +50,10 @@ const FilterProducts = ({
           ${minValue} - ${maxValue}
         </p>
         <MultiRangeSlider
-          min={0}
-          max={16000}
-          minValue={0}
-          maxValue={16000}
+          min={minPrice}
+          max={maxPrice}
+          minValue={minPrice}
+          maxValue={maxPrice}
           onInput={(ChangeResult) => {
             setMinValue(ChangeResult.minValue);
             setMaxValue(ChangeResult.maxValue);
@@ -61,7 +64,7 @@ const FilterProducts = ({
           }}
           label={false}
           ruler={false}
-          step={1600}
+          step={minPrice}
           barLeftColor="white"
           barInnerColor="#16263D"
           barRightColor="white"

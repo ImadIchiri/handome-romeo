@@ -6,16 +6,22 @@ import ProductsList from "../ProductsList/ProductsList";
 
 const ProductsPage = () => {
   const { products } = useContext(DataContext);
+  const maxPrice = Math.max(
+    ...new Set(products.map((item) => item.price["new_price"]))
+  );
+  const minPrice = Math.min(
+    ...new Set(products.map((item) => item.price["new_price"]))
+  );
   const [filtredList, setFilteredList] = useState([]);
   const [searchParams] = useSearchParams();
   const [filterParams, setFilterPrams] = useState({
     category: undefined,
-    price: { min: 0, max: 16000 },
+    price: { min: minPrice, max: maxPrice },
     color: undefined,
   });
 
-  const [minValue, setMinValue] = useState(0);
-  const [maxValue, setMaxValue] = useState(16000);
+  const [minValue, setMinValue] = useState(minPrice);
+  const [maxValue, setMaxValue] = useState(maxPrice);
 
   const productsCategory = searchParams.get("category");
 
@@ -28,15 +34,17 @@ const ProductsPage = () => {
       },
       color: undefined,
     });
-  }, [searchParams, minValue, maxValue, products]);
+  }, [searchParams, minValue, maxValue, products, productsCategory]);
 
   useEffect(() => {
     let tempList = [...products];
 
     if (filterParams.category) {
-      tempList = tempList.filter(
-        (item) => item.category === filterParams.category
-      );
+      tempList = tempList.filter((item) => {
+        return (
+          item.category.toLowerCase() === filterParams.category.toLowerCase()
+        );
+      });
     }
 
     if (filterParams.price.min || filterParams.price.max) {
@@ -54,11 +62,12 @@ const ProductsPage = () => {
     }
 
     setFilteredList(tempList);
-  }, [filterParams]);
+  }, [products, filterParams]);
 
   return (
     <section className="container min-h-[calc(100vh_-_100px)] bg-mainColor">
-      <div className="flex flex-col hide-scrollbar max-h-[100vh] py-20 relative overflow-x-hidden overflow-y-scroll lg:flex-row">
+      {/* <div className="flex flex-col hide-scrollbar max-h-[100vh] py-20 relative overflow-x-hidden overflow-y-scroll lg:flex-row"> */}
+      <div className="flex flex-col py-20 relative lg:flex-row">
         <FilterProducts
           minValue={minValue}
           setMinValue={setMinValue}
@@ -66,6 +75,8 @@ const ProductsPage = () => {
           setMaxValue={setMaxValue}
           filterParams={filterParams}
           setFilterPrams={setFilterPrams}
+          minPrice={minPrice}
+          maxPrice={maxPrice}
         />
         <ProductsList filtredList={filtredList} />
       </div>

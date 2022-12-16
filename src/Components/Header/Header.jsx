@@ -17,6 +17,12 @@ function Header() {
   const [user] = useAuthState(auth);
   const navigate = useNavigate();
   const { signUserOut } = useAuthContext();
+  const navBarLinks = [
+    { title: "Home", path: "/" },
+    { title: "Products", path: "/productspage" },
+    { title: "Contact", path: "/contact" },
+    { title: "About", path: "/about" },
+  ];
 
   const navLinkStyle = ({ isActive }) => {
     return {
@@ -60,42 +66,30 @@ function Header() {
             style={{ transform: isNavOpen ? "scaleY(1)" : "scaleY(0)" }}
             className="bg-lightBlue absolute top-[100px] left-0 w-full flex-1 flex flex-col justify-center items-center text-xl text-white space-y-6 py-6 transform scale-y-0 duration-[350ms] ease-in-out origin-top lg:hidden"
           >
-            <NavLink to="/" style={navLinkStyle} className="px-4 py-2">
-              Home
-            </NavLink>
-            <NavLink
-              to="/productspage"
-              style={navLinkStyle}
-              className="px-4 py-2"
-            >
-              Products
-            </NavLink>
-            <NavLink to="/contact" style={navLinkStyle} className="px-4 py-2">
-              Contact
-            </NavLink>
-            <NavLink to="/about" style={navLinkStyle} className="px-4 py-2">
-              About
-            </NavLink>
+            {navBarLinks.map(({ title, path }, index) => (
+              <NavLink
+                key={`${index}-${title}`}
+                to={path}
+                style={navLinkStyle}
+                className="px-4 py-2"
+              >
+                {title}
+              </NavLink>
+            ))}
           </nav>
 
           {/* Large Screens NavBar */}
           <nav className="hidden w-full flex-1 flex-row justify-center items-center text-xl text-white bg-transparent py-0 mx-6 space-x-6 lg:flex">
-            <NavLink to="/" style={navLinkStyle} className="px-4 py-2">
-              Home
-            </NavLink>
-            <NavLink
-              to="/productspage"
-              style={navLinkStyle}
-              className="px-4 py-2"
-            >
-              Products
-            </NavLink>
-            <NavLink to="/contact" style={navLinkStyle} className="px-4 py-2">
-              Contact
-            </NavLink>
-            <NavLink to="/about" style={navLinkStyle} className="px-4 py-2">
-              About
-            </NavLink>
+            {navBarLinks.map(({ title, path }, index) => (
+              <NavLink
+                key={`${index}-${title}`}
+                to={path}
+                style={navLinkStyle}
+                className="px-4 py-2"
+              >
+                {title}
+              </NavLink>
+            ))}
           </nav>
 
           <div className="flex items-center space-x-4">

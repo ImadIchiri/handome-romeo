@@ -44,23 +44,10 @@ const ContactPage = () => {
           </div>
           <div className="flex items-center w-fit mx-auto space-x-3 text-mainColor">
             <a
-              href="https://www.facebook.com/imad.ichiri.3"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <GrFacebook className="text-4xl" />
-            </a>
-            <a
-              href="https://www.instagram.com/imad_ichiri/"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <FaInstagramSquare className="text-4xl scale-110" />
-            </a>
-            <a
               href="https://www.linkedin.com/in/imad-ichiri/"
               target="_blank"
               rel="noreferrer"
+              title="LinkedIn"
             >
               <GrLinkedin className="text-4xl" />
             </a>
@@ -68,8 +55,25 @@ const ContactPage = () => {
               href="https://github.com/ImadIchiri"
               target="_blank"
               rel="noreferrer"
+              title="Github"
             >
               <FaGithubSquare className="text-4xl scale-110" />
+            </a>
+            <a
+              href="https://www.instagram.com/imad_ichiri/"
+              target="_blank"
+              rel="noreferrer"
+              title="Instagram"
+            >
+              <FaInstagramSquare className="text-4xl scale-110" />
+            </a>
+            <a
+              href="https://www.facebook.com/imad.ichiri.3"
+              target="_blank"
+              rel="noreferrer"
+              title="Facebook"
+            >
+              <GrFacebook className="text-4xl" />
             </a>
           </div>
         </div>

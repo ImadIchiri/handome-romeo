@@ -9,6 +9,7 @@ In addition, all data is saved in a JSON file inside /data folder.
 
 ## Technologies Used:
 
+- FIGMA
 - HTML
 - CSS / TailwindCSS
 - JavaScript
